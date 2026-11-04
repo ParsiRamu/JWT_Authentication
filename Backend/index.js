@@ -13,6 +13,22 @@ app.get("/", (req, res) => {
   res.status(200).send("This was the message from the server");
 });
 
+app.post("/user-login", async (req, res) => {
+  console.log("Line17: ", req.body);
+
+  const email = req.body.email;
+  const password = req.body.password;
+  const user = await pool.query(`select * from users where email = '${email}'`);
+  const passwordHash = user[0][0].password;
+  const isPassword = await bcrypt.compare(password, passwordHash);
+  console.log("IsPassword:", isPassword);
+  if (isPassword) {
+    res.status(200).json({ userAuthenticated: true });
+  } else {
+    res.status(401).json({ userAuthenticated: false });
+  }
+});
+
 app.post("/register-new-user", async (req, res) => {
   console.log("Line17: ", req.body);
   const name = req.body.name;
