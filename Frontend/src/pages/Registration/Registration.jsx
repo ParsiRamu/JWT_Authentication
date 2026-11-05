@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Registration.css'
 import axiosClient from '../../utils/axiosClient.js';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const [userDetails,SetuserDetails] = useState({
@@ -56,7 +57,11 @@ const submitSignupForm = async ()=>{
       </Button>
       
     </Form>
-    <p>Already account? <a href="#" style={{textDecoration:'underline'}}>Signin</a></p>
+    <p>Already account?
+      <Link to={"/login"}>
+      Signin
+      </Link>
+      </p>
     </div>
         </div>
     </div>
