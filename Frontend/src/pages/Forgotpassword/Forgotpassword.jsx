@@ -64,7 +64,7 @@ const setNewPassword = async()=>{
    
     alert("New Password Updated")
     navigate("/login")
-
+  
   }catch(err){
     console.log(err)
     alert("Error: While Update the Password")
